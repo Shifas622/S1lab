@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Color Changer</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        .light-mode {
+            background-color: #F5F5F5;
+            color:#383535;
+        }
+
+        .dark-mode {
+            background-color:#383535;
+            color:#F5F5F5;
+        }
+
+        button {
+            margin: 5px;
+        }
+
+        /* Styles for the toggle switch */
+        .togg {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .togg input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <h3 id="head">hello</h3>
+    <button onclick="changeColor('red')">Red</button>
+    <button onclick="changeColor('blue')">Blue</button>
+    <button onclick="changeColor('green')">Green</button>
+    
+    <label class="togg">
+        <input type="checkbox" onclick="toggleDarkMode()">
+        <span class="slider"></span>
+    </label>
+
+    <script>
+        function changeColor(color) {
+            document.getElementById("head").style.color = color;
+        }
+
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle("dark-mode");
+            body.classList.toggle("light-mode");
+        }
+    </script>
+</body>
+</html>

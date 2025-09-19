@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>String And Math Functions</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <h2 align="Center">String Functions</h2>
+    <hr>
+
+    Length Of The String <input id="String" type="Text" placeholder="Enter A String">
+    <button onclick="String()">Click Here</button>
+    <p id="Stringpara"></p>
+
+    Concat String <input id="String1" type="Text" placeholder="Enter A String 1">
+     <input id="String2" type="Text" placeholder="Enter A String 2">
+    <button onclick="Concat()">Concat</button>
+    <p id="Stringpara1"></p>
+
+    Upper Case <input id="Str" type="Text" placeholder="Enter A String 1">
+    <button onclick="upper()">UpperCase</button>
+    <p id="Stringpara3"></p>
+
+    lowercase<input id="string3"type="text" placeholder="enter the string">
+    <button onclick="lower()">Lowercase</button>
+    <p id ="para4"></p>
+
+    <h2 align="Center">Math Functions</h2>
+    <hr>
+    <input type="Text" placeholder="Enter A Number">
+    <input type="Text" placeholder="Enter A Number">
+    <h3 id="Mathpara"></h3>
+
+    <script>
+        function String()
+        {
+            let x=document.getElementById("String").value;
+            x=x.length;
+            document.getElementById("Stringpara").innerHTML="Length Of The String:"+x;
+        }
+
+           function Concat()
+           {
+            let x=document.getElementById("String1").value;
+            let y=document.getElementById("String2").value;
+            let z=x.concat(y);
+            document.getElementById("Stringpara1").innerHTML="Concated String:"+z;
+
+           }
+       function upper()
+         {
+            let x=document.getElementById("Str").value;
+            x=x.toUpperCase();
+            document.getElementById("Stringpara3").innerHTML="Upper Cased Text:"+x;
+         }
+         function lower()
+         {
+            let x=document.getElementById("string3").value;
+            x=x.toLowerCase();
+            document.getElementById("para4").innerHTML="lowercase:"+x;
+
+         }
+
+    </script>
+
+    
+    
+</body>
+</html>
