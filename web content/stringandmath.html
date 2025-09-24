@@ -29,11 +29,50 @@
     <button onclick="lower()">Lowercase</button>
     <p id ="para4"></p>
 
-    <h2 align="Center">Math Functions</h2>
-    <hr>
-    <input type="Text" placeholder="Enter A Number">
-    <input type="Text" placeholder="Enter A Number">
-    <h3 id="Mathpara"></h3>
+    
+    Slice String <input id="sliceStr" type="text" placeholder="Enter a string">
+    <input id="sliceStart" type="number" placeholder="Start Index">
+    <input id="sliceEnd" type="number" placeholder="End Index">
+    <button onclick="sliceFunction()">Slice</button>
+    <p id="slicePara"></p>
+
+    Trim String<input id="trimStr" type="text" placeholder="Enter a string with spaces">
+    <button onclick="trimFunction()">Trim</button>
+    <p id="trimPara"></p>
+
+  
+    Substring<input id="subStr" type="text" placeholder="Enter a string">
+    <input id="subStart" type="number" placeholder="Start Index">
+    <input id="subLength" type="number" placeholder="Length">
+    <button onclick="subStringFunction()">Substring</button>
+    <p id="subPara"></p>
+    
+<hr>
+    
+    <h3>New Math Functions</h3>
+    
+   Max <input id="maxNum1" type="number" placeholder="Number 1">
+    <input id="maxNum2" type="number" placeholder="Number 2">
+    <button onclick="maxFunction()">Max</button>
+    <p id="maxPara"></p>
+
+    
+    Min<input id="minNum1" type="number" placeholder="Number 1">
+    <input id="minNum2" type="number" placeholder="Number 2">
+    <button onclick="minFunction()">Min</button>
+    <p id="minPara"></p>
+
+ 
+  Round  <input id="roundNum" type="number" placeholder="Enter a decimal number">
+    <button onclick="roundFunction()">Round</button>
+    <p id="roundPara"></p>
+
+    Square<input id="sqrt" type="number" placeholder="Enter a number">
+      <button onclick="sqrt()">Square</button>
+      <p id="squarePara"></p>
+
+
+
 
     <script>
         function String()
@@ -43,31 +82,78 @@
             document.getElementById("Stringpara").innerHTML="Length Of The String:"+x;
         }
 
-           function Concat()
-           {
+        function Concat()
+        {
             let x=document.getElementById("String1").value;
             let y=document.getElementById("String2").value;
             let z=x.concat(y);
             document.getElementById("Stringpara1").innerHTML="Concated String:"+z;
 
-           }
-       function upper()
-         {
+        }
+        function upper()
+        {
             let x=document.getElementById("Str").value;
             x=x.toUpperCase();
             document.getElementById("Stringpara3").innerHTML="Upper Cased Text:"+x;
-         }
-         function lower()
-         {
+        }
+        function lower()
+        {
             let x=document.getElementById("string3").value;
             x=x.toLowerCase();
             document.getElementById("para4").innerHTML="lowercase:"+x;
 
-         }
+        }
 
+     
+        function sliceFunction() {
+            let str = document.getElementById("sliceStr").value;
+            let start = parseInt(document.getElementById("sliceStart").value);
+            let end = parseInt(document.getElementById("sliceEnd").value);
+            let slicedStr = str.slice(start, end);
+            document.getElementById("slicePara").innerHTML = "Sliced String: " + slicedStr;
+        }
+
+        function trimFunction() {
+            let str = document.getElementById("trimStr").value;
+            let trimmedStr = str.trim();
+            document.getElementById("trimPara").innerHTML = "Trimmed String:" + trimmedStr  ;
+        }
+
+        function subStringFunction() {
+            let str = document.getElementById("subStr").value;
+            let start = parseInt(document.getElementById("subStart").value);
+            let length = parseInt(document.getElementById("subLength").value);
+            let subStr = str.substr(start, length);
+            document.getElementById("subPara").innerHTML = "Substring: " + subStr;
+        }
+        
+      
+        function maxFunction() {
+            let num1 = parseFloat(document.getElementById("maxNum1").value);
+            let num2 = parseFloat(document.getElementById("maxNum2").value);
+            let maxNum = Math.max(num1, num2);
+            document.getElementById("maxPara").innerHTML = "Maximum Number: " + maxNum;
+        }
+
+        function minFunction() {
+            let num1 = parseFloat(document.getElementById("minNum1").value);
+            let num2 = parseFloat(document.getElementById("minNum2").value);
+            let minNum = Math.min(num1, num2);
+            document.getElementById("minPara").innerHTML = "Minimum Number: " + minNum;
+        }
+
+        function roundFunction() {
+            let num = parseFloat(document.getElementById("roundNum").value);
+            let roundedNum = Math.round(num);
+            document.getElementById("roundPara").innerHTML = "Rounded Number: " + roundedNum;
+        }
+
+        function sqrt()
+        {
+            let num=parseFloat(document.getElementById("sqrt").value);
+            let num1 = Math.sqrt(num);
+            document.getElementById("squarePara").innerHTML = "Square Number: " + num1;
+        }
     </script>
-
-    
-    
 </body>
 </html>
