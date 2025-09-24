@@ -1,6 +1,5 @@
-words="jayakrishnan"
+words="trivandrum"
 vowels="aeiouAEIOU"
 for i in words:
-    if words in vowels:
-        result +=i
-        print("\n",i)
+    if i in vowels:
+     print("\n",i)
