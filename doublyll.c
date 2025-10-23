@@ -97,7 +97,7 @@ void delete_rear() {
     if (temp->prev != NULL)
         temp->prev->next = NULL;
     else
-        head = NULL; 
+        head = NULL;  // Only one node existed
     free(temp);
 }
 
