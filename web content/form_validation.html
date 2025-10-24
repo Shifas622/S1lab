@@ -1,0 +1,234 @@
+<html>
+<head>
+  <title>Registration Form Validation</title>
+  <style>
+    body {
+      background-color: rgb(77, 149, 212);
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    table {
+      background: rgba(255, 255, 255, 0.2);
+      border-collapse: collapse;
+      padding: 10px;
+    }
+    th, td {
+      padding: 8px 12px;
+      color: black;
+      vertical-align: top;
+    }
+    h1 {
+      color: crimson;
+      text-align: center;
+    }
+    h2 {
+      color: black;
+      text-align: center;
+    }
+    input[type="submit"], input[type="reset"] {
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+    .required {
+      color: red;
+      font-weight: bold;
+    }
+    .error {
+      color: red;
+      font-size: 13px;
+      margin-top: 4px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <marquee behavior="scroll" direction="left" scrollamount="30" onmouseover="this.stop();" onmouseout="this.start();">
+    <h1>WELCOME TO FRESHERS WORLD!!!</h1>
+  </marquee> 
+
+  <h2>Registration Form</h2>
+
+  <form id="regForm" align="center" onsubmit="return validateForm()">
+    <table border="1" align="center">
+      <tr>
+        <th>Name <span class="required">*</span></th>
+        <td>
+          <input type="text" id="name" name="name" required />
+          <span class="error" id="nameError"></span>
+        </td>
+      </tr>
+
+      <tr>
+        <th>Age <span class="required">*</span></th>
+        <td>
+          <select name="age" id="age" required>
+            <option value="">--Select Age--</option>
+            <option>17</option>
+            <option>18</option>
+            <option>19</option> 
+            <option>20</option>
+          </select>
+          <span class="error" id="ageError"></span>
+        </td>
+      </tr>
+
+      <tr>
+        <th>Password <span class="required">*</span></th>
+        <td>
+          <input type="password" id="password" name="password" required />
+          <span class="error" id="passwordError"></span>
+        </td>
+      </tr>
+
+      <tr>
+        <th>Re-enter Password</th>
+        <td>
+          <input type="password" id="repassword" name="repassword" />
+          <span class="error" id="repasswordError"></span>
+        </td>
+      </tr>
+
+      <tr>
+        <th>Select your security question</th>
+        <td>
+          <input type="radio" name="sec" value="pet"> What is your pet name?<br>
+          <input type="radio" name="sec" value="friend"> Who is your best friend?<br>
+          <input type="radio" name="sec" value="color"> What is your favourite color?<br>
+          <input type="radio" name="sec" value="teacher"> Who is your favourite teacher?<br>
+        </td>
+      </tr>
+
+      <tr>
+        <th>Answer of security question</th>
+        <td><input type="text" name="SecQuestion" /></td>
+      </tr>
+
+      <tr>
+        <th>Email ID <span class="required">*</span></th>
+        <td>
+          <input type="email" id="email" name="email" required />
+          <span class="error" id="emailError"></span>
+        </td>
+      </tr>
+
+      <tr>
+        <th>Languages Known</th>
+        <td>
+          <input type="checkbox"> Malayalam
+          <input type="checkbox"> English
+          <input type="checkbox"> Hindi
+        </td>
+      </tr>
+
+      <tr>
+        <th>Phone number</th>
+        <td>
+          <table border="1">
+            <tr><th>Home</th><th>Office</th></tr>
+            <tr>
+              <td>
+                <input type="text" id="homePhone">
+                <span class="error" id="homeError"></span>
+              </td>
+              <td>
+                <input type="text" id="officePhone">
+                <span class="error" id="officeError"></span>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <th>Upload CV</th>
+        <td><input type="file" name="file" /></td>
+      </tr>
+
+      <tr>
+        <td align="center"><input type="reset"></td>
+        <td align="center"><input type="submit" value="Submit"></td>
+      </tr>
+    </table>
+  </form>
+
+  <script>
+    function validateForm() {
+      let valid = true;
+
+      // Clear previous error messages
+      document.querySelectorAll(".error").forEach(el => el.innerText = "");
+
+      // Get form values
+      const name = document.getElementById("name").value.trim();
+      const age = document.getElementById("age").value;
+      const password = document.getElementById("password").value;
+      const repassword = document.getElementById("repassword").value;
+      const email = document.getElementById("email").value.trim();
+      const homePhone = document.getElementById("homePhone").value.trim();
+      const officePhone = document.getElementById("officePhone").value.trim();
+
+      // Regex
+      const nameRegex = /^[A-Za-z\s]+$/;
+      const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phoneRegex = /^\d{10}$/;
+
+      // Name validation
+      if (!name) {
+        document.getElementById("nameError").innerText = "Name is required.";
+        valid = false;
+      } else if (!nameRegex.test(name)) {
+        document.getElementById("nameError").innerText = "Name must contain only letters.";
+        valid = false;
+      }
+
+      // Age validation
+      if (!age) {
+        document.getElementById("ageError").innerText = "Please select your age.";
+        valid = false;
+      }
+
+      // Password validation
+      if (!password) {
+        document.getElementById("passwordError").innerText = "Password is required.";
+        valid = false;
+      } else if (!passwordRegex.test(password)) {
+        document.getElementById("passwordError").innerText = "Must be 6+ characters, include letters and numbers.";
+        valid = false;
+      }
+
+      // Repassword validation
+      if (password !== repassword) {
+        document.getElementById("repasswordError").innerText = "Passwords do not match.";
+        valid = false;
+      }
+
+      // Email validation
+      if (!email) {
+        document.getElementById("emailError").innerText = "Email is required.";
+        valid = false;
+      } else if (!emailRegex.test(email)) {
+        document.getElementById("emailError").innerText = "Invalid email format.";
+        valid = false;
+      }
+
+      // Phone validation
+      if (homePhone && !phoneRegex.test(homePhone)) {
+        document.getElementById("homeError").innerText = "Home number must be 10 digits.";
+        valid = false;
+      }
+      if (officePhone && !phoneRegex.test(officePhone)) {
+        document.getElementById("officeError").innerText = "Office number must be 10 digits.";
+        valid = false;
+      }
+
+      if (valid) {
+        alert("Form submitted successfully!");
+      }
+      return valid;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mouse Over Example</title>
+</head>
+<body>
+
+<h2>Hover Over The Image</h2>
+
+<img id="myImage" src="images/browser.jpg" width="300" height="200">
+<p id="myText">This is old text.</p>
+
+<script>
+function changeStuff() {
+  document.getElementById("myImage").src = "images/chrome.png";
+  document.getElementById("myText").innerHTML = "This is new text.";
+}
+
+function backToOld() {
+  document.getElementById("myImage").src = "images/browser.jpg";
+  document.getElementById("myText").innerHTML = "This is old text.";
+}
+
+// Event handlers
+document.getElementById("myImage").onmouseover = changeStuff;
+document.getElementById("myImage").onmouseout = backToOld;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Form Validation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <form name="myform" onsubmit="validation()">
+        <input type="number" id="abc" name="abc" placeholder="Enter your number">
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function validation() {
+            let x = document.forms["myform"]["abc"].value;
+            if (isNaN(x)) {
+                alert("please enter the number");
+            }
+        }
+    </script>
+</body>
+</html>
