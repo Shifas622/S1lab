@@ -2,13 +2,12 @@
 #include <conio.h>
 #include <stdlib.h>
 
-struct node 
+struct node
 {
     int data;
     struct node *left;
-    struct node *right;    
+    struct node *right;
 };
-
 
 struct node *newnode(int val)
 {
@@ -75,62 +74,56 @@ void preorder(struct node *node)
         preorder(node->right);
     }
 }
-struct node *findMin(struct node *node)
+int minValue(struct node *node)
 {
     while (node->left != NULL)
         node = node->left;
-    return node;
+    return node->data;
 }
-struct node *deleteNode(struct node *root, int val)
+
+struct node *deletenode(struct node *node, int value)
 {
-    if (root == NULL)
+    if (node == NULL)
     {
-        printf("Value not found in tree.\n");
-        return root;
+        return node;
     }
 
-    if (val < root->data)
-        root->left = deleteNode(root->left, val);
-    else if (val > root->data)
-        root->right = deleteNode(root->right, val);
+    if (value < node->data)
+    {
+        node->left = deletenode(node->left, value);
+    }
+    else if (value > node->data)
+    {
+        node->right = deletenode(node->right, value);
+    }
     else
     {
-        if (root->left == NULL && root->right == NULL)
+        if (node->left == NULL)
         {
-            printf("Deleting leaf node: %d\n", val);
-            free(root);
-            return NULL;
-        }
-        else if (root->left == NULL)
-        {
-            printf("Deleting node with one child: %d\n", val);
-            struct node *temp = root->right;
-            free(root);
-            return temp;
-        }
-        else if (root->right == NULL)
-        {
-            printf("Deleting node with one child: %d\n", val);
-            struct node *temp = root->left;
-            free(root);
-            return temp;
-        }
-        else
-        {
-            struct node *temp = findMin(root->right);
-            root->data = temp->data;
-            root->right = deleteNode(root->right, temp->data);
-        }
-    }
+            struct node *temp = node->right;
+            free(node);
 
-    return root;
+            return temp;
+        }
+        if (node->right == NULL)
+        {
+            struct node *temp = node->left;
+            free(node);
+            return temp;
+        }
+        node->data = minValue(node->right);
+        node->right = deletenode(node->right, node->data);
+    }
+    
+    return node;
 }
+
 void display(struct node *node)
 {
     int choice;
     while (1)
     {
-        printf("\nEnter your choice\n1.InOrder\n2.PostOrder\n3.PreOrder\n4.Exit\n");
+        printf("\nEnter your choice\n1.InOrder\n2.PostOrder\n3.PreOrder\n5.Exit");
         scanf("%d", &choice);
 
         switch (choice)
@@ -144,10 +137,10 @@ void display(struct node *node)
         case 3:
             preorder(node);
             break;
-        case 4:
-            return;
+
         default:
             printf("Invalid choice\n");
+            break;
         }
     }
 }
@@ -182,7 +175,7 @@ int main()
         case 4:
             printf("Enter value to delete: ");
             scanf("%d", &val);
-            root = deleteNode(root, val);
+            root = deletenode(root, val);
             break;
 
         case 5:
