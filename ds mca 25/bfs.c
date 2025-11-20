@@ -30,15 +30,24 @@ void addedge(struct graph *Graph, int src, int dest)
     Graph->adjmatrix[dest][src] = 1;
 }
 
-void DFS(struct graph *Graph, int src)
+void bfs(struct graph *Graph, int src)
 {
+    int quee[100];
+    int front = 0, rear = 0;
     Graph->visited[src] = 1;
-    printf("%d\t", src);
-    for (int i = 0; i < Graph->num_vertex; i++)
+
+    quee[rear] = src;
+    while (front <= rear)
     {
-        if (Graph->adjmatrix[i][src] == 1 && Graph->visited[i] == 0)
+        int current_vertex = quee[front++];
+        printf("%d", current_vertex);
+        for (int i = 0; i < Graph->num_vertex; i++)
         {
-            DFS(Graph, i);
+            if (Graph->adjmatrix[i][current_vertex] == 1 && !Graph->visited[i])
+            {
+                quee[rear++]=i;
+               Graph->visited[i]=1;
+            }
         }
     }
 }
@@ -51,14 +60,14 @@ void main()
     struct graph *Graph = CreateGraph(nVertex);
     while (1)
     {
-        printf("\nEnter Choice\n1.Add Edge\n2.DFS\n3.Exit");
+        printf("\nEnter Choice\n1.Add Edge\n2.BFS\n3.Exit");
         scanf("%d", &choice);
         switch (choice)
         {
         case 1:
             printf("Enter Start Vertex and End Vertex(adding spaces)");
             scanf("%d%d", &src, &dest);
-            if(src>=Graph->num_vertex || dest>=nVertex)
+            if (src >= Graph->num_vertex || dest >= nVertex)
             {
                 printf("no such vertex");
                 break;
@@ -75,12 +84,12 @@ void main()
                 break;
             }
             printf("\n***********Displaying DFS**********\n");
-            DFS(Graph, start);
+            bfs(Graph, start);
             break;
 
         case 3:
             printf("\n**********Exititng*********\n");
-            return ;
+            return;
         }
     }
 }

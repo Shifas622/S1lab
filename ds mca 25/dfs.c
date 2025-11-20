@@ -34,6 +34,7 @@ void DFS(struct graph *Graph, int src)
 {
     Graph->visited[src] = 1;
     printf("%d\t", src);
+    
     for (int i = 0; i < Graph->num_vertex; i++)
     {
         if (Graph->adjmatrix[i][src] == 1 && Graph->visited[i] == 0)
