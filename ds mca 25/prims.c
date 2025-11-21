@@ -44,7 +44,7 @@ int main() {
         int u = -1, v = -1;
 
         for (int i = 0; i < n; i++) {
-            if (visited[i]) {
+            if (visited[i]==1) {
                 for (int j = 0; j < n; j++) {
                     if (!visited[j] && cost[i][j] < min) {
                         min = cost[i][j];
